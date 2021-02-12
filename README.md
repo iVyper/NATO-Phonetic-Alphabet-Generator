@@ -1,20 +1,19 @@
 # NATO Phonetic Alphabet Generator
 
 ## Project Description
-The NATO Phonetic Alphabet Generator is a simple Python utility that converts any word you type into its corresponding NATO code words (e.g., “HELLO” → `[“Hotel”, “Echo”, “Lima”, “Lima”, “Oscar”]`). It reads a CSV file containing the standard letter-to-code mappings, builds a lookup dictionary, and then prompts you to enter a word. Non-alphabet characters are ignored automatically.
+The NATO Phonetic Alphabet Generator converts any word you type into its corresponding NATO code words (e.g., `HELLO` → `["Hotel", "Echo", "Lima", "Lima", "Oscar"]`). It reads a CSV file containing the standard letter-to-code mappings, builds a lookup dictionary, and then prompts you repeatedly until you enter a valid alphabetic string. Non-letter inputs are caught and you’ll be asked to try again.
 
 ## Features
-- **Data-Driven**: Reads the NATO alphabet from `nato_phonetic_alphabet.csv`, making it easy to update or extend.
-- **Case-Insensitive**: Automatically converts input to uppercase to match the CSV keys.
-- **Robust**: Skips non-letter characters rather than throwing errors.
-- **List Output**: Returns a Python list of code words for easy further processing.
+- **Data-Driven**: Reads the official NATO alphabet from `nato_phonetic_alphabet.csv` so you can easily update or extend the mapping.
+- **Input Validation Loop**: Continuously prompts until you type a string containing only letters; non-alphabetic characters trigger a friendly error message and a retry.
+- **Case-Insensitive**: Automatically converts your input to uppercase to match the CSV keys.
+- **Clean Output**: Prints the resulting list of code words for your word.
 
 ## Prerequisites
 - **Python 3.x**  
 - **pandas** library  
 
 ## Installation
-
 1. **Clone or download** this repository to your local machine.  
 2. **Install pandas** (if not already installed):  
    ```bash
@@ -22,29 +21,36 @@ The NATO Phonetic Alphabet Generator is a simple Python utility that converts an
    ```
 
 ## How to Run
-
-1. Open a terminal or command prompt and navigate to the project directory (where `main.py` and `nato_phonetic_alphabet.csv` reside).  
+1. Open a terminal (or command prompt) and navigate to the directory containing:
+   - `main.py`  
+   - `nato_phonetic_alphabet.csv`  
 2. Run the script:
    ```bash
    python main.py
    ```
-3. When prompted, type any word and press Enter. The script will print a list of the corresponding NATO code words.
+3. When prompted, type a single word (letters only) and press Enter.  
+4. If you include any non-letter character, you’ll see:
+   ```
+   Sorry, only letters in the alphabet are allowed.
+   ```
+   Then you’ll be prompted again.
 
+## Demo
+![NATO Phonetic Alphabet Generator Demo](./screenshots/demo.gif)
 ## Usage Example
-
 ```
-Enter a word: Hello, World!
-['Hotel', 'Echo', 'Lima', 'Lima', 'Oscar', 'Whiskey', 'Oscar', 'Romeo', 'Lima', 'Delta']
-```
+Enter a word: Hello123
+Sorry, only letters in the alphabet are allowed.
 
-![NATO Phonetic Alphabet Generator](./screenshots/demo.gif)
+Enter a word: Python
+['Papa', 'Yankee', 'Tango', 'Hotel', 'Oscar', 'November']
+```
 
 ## Project Structure
-
 ```
 NATO Phonetic Alphabet Generator/
 ├── nato_phonetic_alphabet.csv   # CSV mapping letters to code words
-├── main.py                      # Script to load CSV, prompt user, and output code words
+├── main.py                      # Loads CSV, loops for valid input, outputs code words
 ├── LICENSE                      # MIT License
 ├── .gitignore                   # Common ignores (e.g., __pycache__)
 └── README.md                    # This documentation
